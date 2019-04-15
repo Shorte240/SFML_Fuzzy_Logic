@@ -19,20 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui-sfml\imgui-SFML.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Input.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\main.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\RacingLine.cpp" />
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Sim.cpp" />
+    <ClCompile Include="..\imgui\imgui-sfml\imgui-SFML.cpp" />
+    <ClCompile Include="..\imgui\imgui.cpp" />
+    <ClCompile Include="..\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="RacingLine.cpp" />
+    <ClCompile Include="Sim.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Input.h" />
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\RacingLine.h" />
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Sim.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="RacingLine.h" />
+    <ClInclude Include="Sim.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
