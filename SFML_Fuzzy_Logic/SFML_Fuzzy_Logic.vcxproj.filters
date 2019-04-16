@@ -18,42 +18,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\main.cpp">
+    <ClCompile Include="Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\imgui\imgui-sfml\imgui-SFML.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Input.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Sim.cpp">
+    <ClCompile Include="RacingLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\RacingLine.cpp">
+    <ClCompile Include="Sim.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui-sfml\imgui-SFML.cpp">
+      <Filter>ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Input.h">
+    <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\Sim.h">
+    <ClInclude Include="RacingLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\RacingLine.h">
+    <ClInclude Include="Sim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
