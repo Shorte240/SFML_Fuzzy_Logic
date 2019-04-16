@@ -1,0 +1,47 @@
+[System]
+Name='FuzzyCarInferenceSystem'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Distance'
+Range=[-1 1]
+NumMFs=3
+MF1='Negative':'trimf',[-1.8 -1 -0.2]
+MF2='Centre':'trimf',[-0.8 0 0.8]
+MF3='Positive':'trimf',[0.2 1 1.8]
+
+[Input2]
+Name='Speed'
+Range=[-1 1]
+NumMFs=3
+MF1='Negative':'trimf',[-1.8 -1 -0.2]
+MF2='Centre':'trimf',[-0.8 0 0.8]
+MF3='Positive':'trimf',[0.2 1 1.8]
+
+[Output1]
+Name='Direction'
+Range=[-1 1]
+NumMFs=5
+MF1='Far_Left':'trimf',[-1.5 -1 -0.5]
+MF2='Left':'trimf',[-1 -0.5 0]
+MF3='Centre':'trimf',[-0.5 0 0.5]
+MF4='Right':'trimf',[0 0.5 1]
+MF5='Far_Right':'trimf',[0.5 1 1.5]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+2 1, 2 (1) : 1
+2 2, 3 (1) : 1
+2 3, 4 (1) : 1
+3 2, 4 (1) : 1
+3 3, 5 (1) : 1
