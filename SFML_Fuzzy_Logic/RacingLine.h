@@ -10,6 +10,7 @@ public:
 
 	void Update(float dt);
 	void HandleInput(float dt);
+	sf::Vector2f GetPosition() { return line.getPosition(); };
 	void Render();
 
 private:

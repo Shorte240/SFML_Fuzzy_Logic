@@ -35,6 +35,9 @@ void Sim::update(float dt)
 	// Update the racing line
 	racingLine->Update(dt);
 
+	// Give the lines position to the finite state machine car
+	finiteCar->GetLinePosition(racingLine->GetPosition());
+
 	// Update the finite state machine car
 	finiteCar->Update(dt);
 

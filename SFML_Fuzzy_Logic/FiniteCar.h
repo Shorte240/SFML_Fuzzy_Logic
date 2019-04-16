@@ -10,14 +10,28 @@ public:
 
 	void Update(float dt);
 	void GetLinePosition(sf::Vector2f linePos);
+	void MoveCar();
 	void Render();
 
 private:
 	sf::RenderWindow* window;
-	sf::RectangleShape line;
-	float movementSpeed;
-	sf::Vector2f linePosition;
+
 	sf::Sprite carSprite;
 	sf::Texture carTexture;
+
+	enum CarStates
+	{
+		FarLeft = 0,
+		Left = 1,
+		Centre = 2,
+		Right = 3,
+		FarRight = 4
+	};
+
+	CarStates currentState;
+
+	sf::Vector2f linePosition;
+
+	float velocity;
 };
 
