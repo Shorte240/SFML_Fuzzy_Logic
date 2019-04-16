@@ -24,12 +24,14 @@
     <ClCompile Include="..\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="FiniteCar.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RacingLine.cpp" />
     <ClCompile Include="Sim.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FiniteCar.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="RacingLine.h" />
     <ClInclude Include="Sim.h" />

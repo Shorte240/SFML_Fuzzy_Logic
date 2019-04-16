@@ -13,6 +13,9 @@ Sim::Sim(sf::RenderWindow* hwnd, Input* in, sf::Clock* clock)
 	// Set up the racing line
 	racingLine = new RacingLine(hwnd, in, sf::Vector2f(5.0f, window->getSize().y), sf::Vector2f(window->getSize().x / 2.0f, 0.0f), 1000.0f);
 
+	// Set up the finite state machine car
+	finiteCar = new FiniteCar(hwnd);
+
 	// Set up font
 	if (!font.loadFromFile("font/arial.ttf"))
 	{
@@ -32,6 +35,8 @@ void Sim::update(float dt)
 	// Update the racing line
 	racingLine->Update(dt);
 
+	// Update the finite state machine car
+	finiteCar->Update(dt);
 
 	// Update all the text variables
 	updateText();
@@ -77,6 +82,9 @@ void Sim::render(float dt)
 
 	// Draw the racing line
 	racingLine->Render();
+
+	// Draw the finite state machine car
+	finiteCar->Render();
 
 	gui(dt);
 

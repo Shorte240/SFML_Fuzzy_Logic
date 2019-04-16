@@ -4,6 +4,7 @@
 
 #include "Input.h"
 #include "RacingLine.h"
+#include "FiniteCar.h"
 #include <imgui.h>
 #include <imgui-sfml/imgui-SFML.h>
 
@@ -29,6 +30,7 @@ private:
 
 	// Simulation elements
 	RacingLine* racingLine;
+	FiniteCar* finiteCar;
 
 	// Text setup
 	sf::Font font;
