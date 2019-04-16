@@ -7,6 +7,9 @@
 #include "FiniteCar.h"
 #include <imgui.h>
 #include <imgui-sfml/imgui-SFML.h>
+#include "fl\Headers.h"
+
+using namespace fl;
 
 class Sim
 {
@@ -38,6 +41,8 @@ private:
 	sf::Text fpsText;
 
 	sf::Clock* cl;
+
+	Engine* fuzzyEngine;
 
 	// Draw functions
 	void beginDraw();

@@ -21,6 +21,8 @@ Sim::Sim(sf::RenderWindow* hwnd, Input* in, sf::Clock* clock)
 	{
 		printf("Font can't load\n");
 	}
+
+	fuzzyEngine = FisImporter().fromFile("FuzzyCarInferenceSystem.fis");
 }
 
 Sim::~Sim()
@@ -37,6 +39,11 @@ void Sim::update(float dt)
 
 	// Give the lines position to the finite state machine car
 	finiteCar->GetLinePosition(racingLine->GetPosition());
+
+	// Engine usage
+	//fuzzyEngine->setInputVariable()
+	//fuzzyEngine->process()
+	//float output = fuzzyEngine->getOutputVariable();
 
 	// Update the finite state machine car
 	finiteCar->Update(dt);
