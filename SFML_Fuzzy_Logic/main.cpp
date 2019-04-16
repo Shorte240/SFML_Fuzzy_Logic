@@ -16,7 +16,7 @@ int main()
 	float deltaTime;
 
 	Input input;
-	Sim sim(&window, &input, &clock);
+	Sim sim(&window, &input);
 
 	sf::Color bgColor;
 

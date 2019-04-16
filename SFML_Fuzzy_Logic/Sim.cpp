@@ -1,11 +1,10 @@
 #include "Sim.h"
 
-Sim::Sim(sf::RenderWindow* hwnd, Input* in, sf::Clock* clock)
+Sim::Sim(sf::RenderWindow* hwnd, Input* in)
 {
 	// Set window and input for the simulation
 	window = hwnd;
 	input = in;
-	cl = clock;
 
 	// Initial fps value
 	fps = 0.0f;

@@ -14,7 +14,7 @@ using namespace fl;
 class Sim
 {
 public:
-	Sim(sf::RenderWindow* hwnd, Input *input, sf::Clock* clock);
+	Sim(sf::RenderWindow* hwnd, Input *input);
 	~Sim();
 
 	// Functions
@@ -39,8 +39,6 @@ private:
 	sf::Font font;
 	int fps;
 	sf::Text fpsText;
-
-	sf::Clock* cl;
 
 	Engine* fuzzyEngine;
 

@@ -25,7 +25,7 @@ void RacingLine::HandleInput(float dt)
 	if (input->isKeyDown(sf::Keyboard::A) || input->isKeyDown(sf::Keyboard::Left))
 	{
 		// Ensure the line doesn't exceed the left bound
-		if (line.getPosition().x > 0.0f + line.getSize().x)
+		if (line.getPosition().x > 10.0f)
 		{
 			// Move the line 1 unit left
 			line.move(sf::Vector2f(-movementSpeed * dt, 0.0f));

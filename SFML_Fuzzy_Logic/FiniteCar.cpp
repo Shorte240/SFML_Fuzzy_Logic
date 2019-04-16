@@ -15,6 +15,10 @@ FiniteCar::FiniteCar(sf::RenderWindow* hwnd)
 	carSprite.setPosition(window->getSize().x / 2.0f, window->getSize().y / 2.0f);
 
 	currentState = CarStates::Centre;
+
+	velocity = 0.0f;
+	acceleration = 0.0f;
+	distanceFromLine = 0.0f;
 }
 
 FiniteCar::~FiniteCar()
@@ -23,7 +27,7 @@ FiniteCar::~FiniteCar()
 
 void FiniteCar::Update(float dt)
 {
-	MoveCar();
+	MoveCar(dt);
 }
 
 void FiniteCar::GetLinePosition(sf::Vector2f linePos)
@@ -31,22 +35,63 @@ void FiniteCar::GetLinePosition(sf::Vector2f linePos)
 	linePosition = linePos;
 }
 
-void FiniteCar::MoveCar()
+void FiniteCar::MoveCar(float dt)
 {
 	// Change state of car
 	// Depending on distance from line
 	// And current speed
-	if (linePosition.x < carSprite.getPosition().x)
+	distanceFromLine = linePosition.x - carSprite.getPosition().x;
+	velocity = distanceFromLine / dt;
+
+	//printf("Distance: %f \n", distanceFromLine);
+	//printf("Velocity: %f \n", velocity);
+	printf("Pos: %f \n", carSprite.getPosition().x);
+
+	if (distanceFromLine < -10.0f - carSprite.getTextureRect().width && velocity < -10.0f)
+	{
+		currentState = CarStates::FarLeft;
+		acceleration = 0.15f;
+	}
+	if (distanceFromLine > -10.0f - carSprite.getTextureRect().width && distanceFromLine < -10.0f && velocity > -10.0f && velocity < -1.0f)
 	{
 		currentState = CarStates::Left;
+		acceleration = 0.075f;
 	}
-	if (linePosition.x == carSprite.getPosition().x)
+	if (distanceFromLine > -10.0f && distanceFromLine < 10.0f && velocity > -1.0f && velocity < 1.0f)
 	{
 		currentState = CarStates::Centre;
+		acceleration = 0.01f;
 	}
-	if (linePosition.x > carSprite.getPosition().x)
+	if (distanceFromLine > 10.0f && distanceFromLine < 10.0f + carSprite.getTextureRect().width && velocity > 1.0f && velocity < 10.0f)
 	{
 		currentState = CarStates::Right;
+		acceleration = 0.075f;
+	}
+	if (distanceFromLine > 10.0f + carSprite.getTextureRect().width && velocity > 10.0f)
+	{
+		currentState = CarStates::FarRight;
+		acceleration = 0.15f;
+	}
+
+	switch (currentState)
+	{
+	case CarStates::FarLeft:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		break;
+	case CarStates::Left:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		break;
+	case CarStates::Centre:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		break;
+	case CarStates::Right:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		break;
+	case CarStates::FarRight:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		break;
+	default:
+		break;
 	}
 }
 

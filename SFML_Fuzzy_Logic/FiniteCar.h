@@ -10,7 +10,7 @@ public:
 
 	void Update(float dt);
 	void GetLinePosition(sf::Vector2f linePos);
-	void MoveCar();
+	void MoveCar(float dt);
 	void Render();
 
 private:
@@ -33,5 +33,7 @@ private:
 	sf::Vector2f linePosition;
 
 	float velocity;
+	float acceleration;
+	float distanceFromLine;
 };
 
