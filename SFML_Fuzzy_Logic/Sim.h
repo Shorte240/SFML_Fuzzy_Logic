@@ -5,11 +5,9 @@
 #include "Input.h"
 #include "RacingLine.h"
 #include "FiniteCar.h"
+#include "FuzzyCar.h"
 #include <imgui.h>
 #include <imgui-sfml/imgui-SFML.h>
-#include "fl\Headers.h"
-
-using namespace fl;
 
 class Sim
 {
@@ -21,27 +19,17 @@ public:
 	void update(float dt);
 	void gui(float dt);
 	void render(float dt);
-	void reset();
 
 private:
 	// Background setup
 	sf::RenderWindow* window;
 	Input* input;
 
-	// Functions
-	void updateText();
-
 	// Simulation elements
 	RacingLine* racingLine;
 	FiniteCar* finiteCar;
-
-	// Text setup
-	sf::Font font;
-	int fps;
-	sf::Text fpsText;
-
-	Engine* fuzzyEngine;
-
+	FuzzyCar* fuzzyCar;
+	
 	// Draw functions
 	void beginDraw();
 	void endDraw();

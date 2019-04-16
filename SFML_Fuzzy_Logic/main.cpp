@@ -6,10 +6,9 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(640, 480), "");
+	sf::RenderWindow window(sf::VideoMode(640, 480), "SFML State Machine Comparison");
 	window.setVerticalSyncEnabled(true);
 	ImGui::SFML::Init(window);
-
 
 	//For Delta Time
 	sf::Clock clock;
@@ -18,15 +17,6 @@ int main()
 	Input input;
 	Sim sim(&window, &input);
 
-	sf::Color bgColor;
-
-	float color[3] = { 0.f, 0.f, 0.f };
-
-	// let's use char array as buffer, see next part
-	// for instructions on using std::string with ImGui
-	char windowTitle[255] = "ImGui + SFML = <3";
-
-	window.setTitle(windowTitle);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -103,8 +93,7 @@ int main()
 		//since it was last calculated (in seconds) and restart the clock.
 		deltaTime = clock.restart().asSeconds();
 
-		
-
+		// Update and render the simulation
 		sim.update(deltaTime);
 		sim.render(deltaTime);
 	}

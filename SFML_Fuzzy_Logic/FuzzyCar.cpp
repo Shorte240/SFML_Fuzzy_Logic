@@ -1,10 +1,10 @@
-#include "FiniteCar.h"
+#include "FuzzyCar.h"
 
-FiniteCar::FiniteCar(sf::RenderWindow* hwnd)
+FuzzyCar::FuzzyCar(sf::RenderWindow* hwnd)
 {
 	window = hwnd;
 
-	if (!carTexture.loadFromFile("textures/redCar.png"))
+	if (!carTexture.loadFromFile("textures/greenCar.png"))
 	{
 		// error...
 	}
@@ -12,30 +12,37 @@ FiniteCar::FiniteCar(sf::RenderWindow* hwnd)
 	carSprite.setTexture(carTexture);
 	carSprite.setScale(sf::Vector2f(0.25f, 0.25f));
 	carSprite.setOrigin(sf::Vector2f(carTexture.getSize().x / 2.0f, carTexture.getSize().y / 2.0f));
-	carSprite.setPosition(window->getSize().x / 2.0f, window->getSize().y / 3.0f);
+	carSprite.setPosition(window->getSize().x / 2.0f, window->getSize().y / 1.5f);
 
 	currentState = CarStates::Centre;
 
 	velocity = 0.0f;
 	acceleration = 0.0f;
 	distanceFromLine = 0.0f;
+
+	fuzzyEngine = FisImporter().fromFile("FuzzyCarInferenceSystem.fis");
 }
 
-FiniteCar::~FiniteCar()
+FuzzyCar::~FuzzyCar()
 {
 }
 
-void FiniteCar::Update(float dt)
+void FuzzyCar::Update(float dt)
 {
+	/// Engine usage
+	//fuzzyEngine->setInputVariable()
+	//fuzzyEngine->process()
+	//float output = fuzzyEngine->getOutputVariable();
+
 	MoveCar(dt);
 }
 
-void FiniteCar::GetLinePosition(sf::Vector2f linePos)
+void FuzzyCar::GetLinePosition(sf::Vector2f linePos)
 {
 	linePosition = linePos;
 }
 
-void FiniteCar::MoveCar(float dt)
+void FuzzyCar::MoveCar(float dt)
 {
 	// Change state of car
 	// Depending on distance from line
@@ -95,7 +102,7 @@ void FiniteCar::MoveCar(float dt)
 	}
 }
 
-void FiniteCar::Render()
+void FuzzyCar::Render()
 {
 	window->draw(carSprite);
 }
