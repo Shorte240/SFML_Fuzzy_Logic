@@ -48,9 +48,24 @@ void Sim::gui(float dt)
 
 	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 
-	ImGui::Text("Direction: %.1f", fuzzyCar->getDirection());
-	ImGui::Text("Velocity: %.1f", fuzzyCar->getVelocity());
-	ImGui::Text("Distance from line: %.1f", fuzzyCar->getDistanceFromLine());
+	if (ImGui::CollapsingHeader("Finite Car"))
+	{
+		ImGui::Image(finiteCar->getSprite());
+		ImGui::Text("Velocity: %.1f", finiteCar->getVelocity());
+		ImGui::Text("Distance from line: %.1f", finiteCar->getDistanceFromLine());
+		ImGui::Text("Speed Modifier");
+		ImGui::InputFloat("", &finiteCar->getSpeedModifier());
+	}
+
+	if (ImGui::CollapsingHeader("Fuzzy Car"))
+	{
+		ImGui::Image(fuzzyCar->getSprite());
+		ImGui::Text("Direction: %.1f", fuzzyCar->getDirection());
+		ImGui::Text("Velocity: %.1f", fuzzyCar->getVelocity());
+		ImGui::Text("Distance from line: %.1f", fuzzyCar->getDistanceFromLine());
+		ImGui::Text("Speed Modifier");
+		ImGui::InputFloat("",&fuzzyCar->getSpeedModifier());
+	}
 
 	// End ImGui Window
 	ImGui::End();

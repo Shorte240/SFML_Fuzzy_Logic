@@ -18,6 +18,8 @@ public:
 	float getDirection() { return dir; };
 	float getVelocity() { return velocity; };
 	float getDistanceFromLine() { return distanceFromLine; };
+	float& getSpeedModifier() { return speedModifier; };
+	sf::Sprite getSprite() { return carSprite; };
 
 private:
 	sf::RenderWindow* window;

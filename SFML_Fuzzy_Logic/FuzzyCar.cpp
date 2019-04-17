@@ -41,6 +41,8 @@ void FuzzyCar::Update(float dt)
 	fuzzyEngine->process();
 	dir = fuzzyEngine->getOutputValue("Direction");
 
+	int t = _isnan(dir);
+
 	MoveCar(dt);
 }
 
@@ -80,44 +82,25 @@ void FuzzyCar::MoveCar(float dt)
 		currentState = CarStates::FarRight;
 		acceleration = 0.15f;
 	}
-
-	/*switch (currentState)
-	{
-	case CarStates::FarLeft:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt * speedModifier, 0.0f));
-		break;
-	case CarStates::Left:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
-		break;
-	case CarStates::Centre:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
-		break;
-	case CarStates::Right:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
-		break;
-	case CarStates::FarRight:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
-		break;
-	default:
-		break;
-	}*/
+	
+	float moveX = (dir * dt) * speedModifier;
 
 	switch (currentState)
 	{
 	case CarStates::FarLeft:
-		carSprite.move(sf::Vector2f(dir * dt * speedModifier, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::Left:
-		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::Centre:
-		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::Right:
-		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::FarRight:
-		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	default:
 		break;

@@ -12,6 +12,10 @@ public:
 	void GetLinePosition(sf::Vector2f linePos);
 	void MoveCar(float dt);
 	void Render();
+	float getVelocity() { return velocity; };
+	float getDistanceFromLine() { return distanceFromLine; };
+	float& getSpeedModifier() { return speedModifier; };
+	sf::Sprite getSprite() { return carSprite; };
 
 private:
 	sf::RenderWindow* window;
@@ -35,5 +39,6 @@ private:
 	float velocity;
 	float acceleration;
 	float distanceFromLine;
+	float speedModifier;
 };
 

@@ -19,6 +19,7 @@ FiniteCar::FiniteCar(sf::RenderWindow* hwnd)
 	velocity = 0.0f;
 	acceleration = 0.0f;
 	distanceFromLine = 0.0f;
+	speedModifier = 100000.0f;
 }
 
 FiniteCar::~FiniteCar()
@@ -40,12 +41,13 @@ void FiniteCar::MoveCar(float dt)
 	// Change state of car
 	// Depending on distance from line
 	// And current speed
-	distanceFromLine = linePosition.x - carSprite.getPosition().x;
-	velocity = distanceFromLine / dt;
+	//distanceFromLine = linePosition.x - carSprite.getPosition().x;
+	//velocity = distanceFromLine / dt;
 
-	//printf("Distance: %f \n", distanceFromLine);
-	//printf("Velocity: %f \n", velocity);
-	//printf("Pos: %f \n", carSprite.getPosition().x);
+	distanceFromLine = linePosition.x - carSprite.getPosition().x;
+	distanceFromLine /= window->getSize().x / 2.0f;
+	velocity = distanceFromLine / (dt);
+	velocity /= 60.0f;
 
 	if (distanceFromLine < -10.0f - carSprite.getTextureRect().width && velocity < -10.0f)
 	{
@@ -73,22 +75,24 @@ void FiniteCar::MoveCar(float dt)
 		acceleration = 0.15f;
 	}
 
+	float moveX = (velocity * acceleration * dt) * speedModifier;
+
 	switch (currentState)
 	{
 	case CarStates::FarLeft:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::Left:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::Centre:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::Right:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	case CarStates::FarRight:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(moveX, 0.0f));
 		break;
 	default:
 		break;
