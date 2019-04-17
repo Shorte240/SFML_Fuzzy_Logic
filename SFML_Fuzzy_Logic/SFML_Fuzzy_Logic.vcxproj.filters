@@ -48,7 +48,7 @@
     <ClCompile Include="FiniteCar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\FuzzyCar.cpp">
+    <ClCompile Include="FuzzyCar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="FiniteCar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\FuzzyCar.h">
+    <ClInclude Include="FuzzyCar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,21 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\FuzzyCar.cpp" />
     <ClCompile Include="..\imgui\imgui-sfml\imgui-SFML.cpp" />
     <ClCompile Include="..\imgui\imgui.cpp" />
     <ClCompile Include="..\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
     <ClCompile Include="FiniteCar.cpp" />
+    <ClCompile Include="FuzzyCar.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RacingLine.cpp" />
     <ClCompile Include="Sim.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Frr%27s Stuff\AG0701a\SFML_Fuzzy_Logic\SFML_Fuzzy_Logic\FuzzyCar.h" />
     <ClInclude Include="FiniteCar.h" />
+    <ClInclude Include="FuzzyCar.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="RacingLine.h" />
     <ClInclude Include="Sim.h" />

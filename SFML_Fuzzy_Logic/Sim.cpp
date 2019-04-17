@@ -48,6 +48,10 @@ void Sim::gui(float dt)
 
 	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 
+	ImGui::Text("Direction: %.1f", fuzzyCar->getDirection());
+	ImGui::Text("Velocity: %.1f", fuzzyCar->getVelocity());
+	ImGui::Text("Distance from line: %.1f", fuzzyCar->getDistanceFromLine());
+
 	// End ImGui Window
 	ImGui::End();
 

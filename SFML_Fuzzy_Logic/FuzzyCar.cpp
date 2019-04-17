@@ -19,6 +19,7 @@ FuzzyCar::FuzzyCar(sf::RenderWindow* hwnd)
 	velocity = 0.0f;
 	acceleration = 0.0f;
 	distanceFromLine = 0.0f;
+	speedModifier = 1000.0f;
 
 	fuzzyEngine = FisImporter().fromFile("FuzzyCarInferenceSystem.fis");
 }
@@ -29,10 +30,16 @@ FuzzyCar::~FuzzyCar()
 
 void FuzzyCar::Update(float dt)
 {
+	distanceFromLine = linePosition.x - carSprite.getPosition().x;
+	distanceFromLine /= window->getSize().x / 2.0f;
+	velocity = distanceFromLine / (dt);
+	velocity /= 60.0f;
+
 	/// Engine usage
-	//fuzzyEngine->setInputVariable()
-	//fuzzyEngine->process()
-	//float output = fuzzyEngine->getOutputVariable();
+	fuzzyEngine->setInputValue("Distance", distanceFromLine);
+	fuzzyEngine->setInputValue("Speed", velocity);
+	fuzzyEngine->process();
+	dir = fuzzyEngine->getOutputValue("Direction");
 
 	MoveCar(dt);
 }
@@ -47,55 +54,70 @@ void FuzzyCar::MoveCar(float dt)
 	// Change state of car
 	// Depending on distance from line
 	// And current speed
-	distanceFromLine = linePosition.x - carSprite.getPosition().x;
-	velocity = distanceFromLine / dt;
 
-	//printf("Distance: %f \n", distanceFromLine);
-	//printf("Velocity: %f \n", velocity);
-	//printf("Pos: %f \n", carSprite.getPosition().x);
-
-	if (distanceFromLine < -10.0f - carSprite.getTextureRect().width && velocity < -10.0f)
+	if (distanceFromLine < -0.5f && velocity < -0.5f)
 	{
 		currentState = CarStates::FarLeft;
 		acceleration = 0.15f;
 	}
-	if (distanceFromLine > -10.0f - carSprite.getTextureRect().width && distanceFromLine < -10.0f && velocity > -10.0f && velocity < -1.0f)
+	if (distanceFromLine > -0.5f && distanceFromLine < -0.1f && velocity > -0.5f && velocity < -0.1f)
 	{
 		currentState = CarStates::Left;
 		acceleration = 0.075f;
 	}
-	if (distanceFromLine > -10.0f && distanceFromLine < 10.0f && velocity > -1.0f && velocity < 1.0f)
+	if (distanceFromLine > -0.1f && distanceFromLine < 0.1f && velocity > -0.1f && velocity < 0.1f)
 	{
 		currentState = CarStates::Centre;
 		acceleration = 0.01f;
 	}
-	if (distanceFromLine > 10.0f && distanceFromLine < 10.0f + carSprite.getTextureRect().width && velocity > 1.0f && velocity < 10.0f)
+	if (distanceFromLine > 0.1f && distanceFromLine < 0.5f && velocity > 0.1f && velocity < 0.5f)
 	{
 		currentState = CarStates::Right;
 		acceleration = 0.075f;
 	}
-	if (distanceFromLine > 10.0f + carSprite.getTextureRect().width && velocity > 10.0f)
+	if (distanceFromLine > 0.5f && velocity > 0.5f)
 	{
 		currentState = CarStates::FarRight;
 		acceleration = 0.15f;
 	}
 
+	/*switch (currentState)
+	{
+	case CarStates::FarLeft:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt * speedModifier, 0.0f));
+		break;
+	case CarStates::Left:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
+		break;
+	case CarStates::Centre:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
+		break;
+	case CarStates::Right:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
+		break;
+	case CarStates::FarRight:
+		carSprite.move(sf::Vector2f(velocity * acceleration * dt* speedModifier, 0.0f));
+		break;
+	default:
+		break;
+	}*/
+
 	switch (currentState)
 	{
 	case CarStates::FarLeft:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(dir * dt * speedModifier, 0.0f));
 		break;
 	case CarStates::Left:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
 		break;
 	case CarStates::Centre:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
 		break;
 	case CarStates::Right:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
 		break;
 	case CarStates::FarRight:
-		carSprite.move(sf::Vector2f(velocity * acceleration * dt, 0.0f));
+		carSprite.move(sf::Vector2f(dir * dt* speedModifier, 0.0f));
 		break;
 	default:
 		break;
