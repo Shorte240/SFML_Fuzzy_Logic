@@ -17,7 +17,6 @@ FuzzyCar::FuzzyCar(sf::RenderWindow* hwnd)
 	currentState = CarStates::Centre;
 
 	velocity = 0.0f;
-	acceleration = 0.0f;
 	distanceFromLine = 0.0f;
 	speedModifier = 1000.0f;
 
@@ -30,19 +29,6 @@ FuzzyCar::~FuzzyCar()
 
 void FuzzyCar::Update(float dt)
 {
-	distanceFromLine = linePosition.x - carSprite.getPosition().x;
-	distanceFromLine /= window->getSize().x / 2.0f;
-	velocity = distanceFromLine / (dt);
-	velocity /= 60.0f;
-
-	/// Engine usage
-	fuzzyEngine->setInputValue("Distance", distanceFromLine);
-	fuzzyEngine->setInputValue("Speed", velocity);
-	fuzzyEngine->process();
-	dir = fuzzyEngine->getOutputValue("Direction");
-
-	int t = _isnan(dir);
-
 	MoveCar(dt);
 }
 
@@ -56,31 +42,46 @@ void FuzzyCar::MoveCar(float dt)
 	// Change state of car
 	// Depending on distance from line
 	// And current speed
+	distanceFromLine = linePosition.x - carSprite.getPosition().x;
+	distanceFromLine /= window->getSize().x / 2.0f;
+	velocity = distanceFromLine / (dt);
+	velocity /= 60.0f;
+
+	// Prevent velocity going outwidth the range in the speed graph
+	if (velocity < -1.0f)
+	{
+		velocity = -1.0f;
+	}
+	else if (velocity > 1.0f)
+	{
+		velocity = 1.0f;
+	}
+
+	/// Engine usage
+	fuzzyEngine->setInputValue("Distance", distanceFromLine);
+	fuzzyEngine->setInputValue("Speed", velocity);
+	fuzzyEngine->process();
+	dir = fuzzyEngine->getOutputValue("Direction");
 
 	if (distanceFromLine < -0.5f && velocity < -0.5f)
 	{
 		currentState = CarStates::FarLeft;
-		acceleration = 0.15f;
 	}
 	if (distanceFromLine > -0.5f && distanceFromLine < -0.1f && velocity > -0.5f && velocity < -0.1f)
 	{
 		currentState = CarStates::Left;
-		acceleration = 0.075f;
 	}
 	if (distanceFromLine > -0.1f && distanceFromLine < 0.1f && velocity > -0.1f && velocity < 0.1f)
 	{
 		currentState = CarStates::Centre;
-		acceleration = 0.01f;
 	}
 	if (distanceFromLine > 0.1f && distanceFromLine < 0.5f && velocity > 0.1f && velocity < 0.5f)
 	{
 		currentState = CarStates::Right;
-		acceleration = 0.075f;
 	}
 	if (distanceFromLine > 0.5f && velocity > 0.5f)
 	{
 		currentState = CarStates::FarRight;
-		acceleration = 0.15f;
 	}
 	
 	float moveX = (dir * dt) * speedModifier;

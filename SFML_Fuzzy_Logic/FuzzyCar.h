@@ -43,7 +43,6 @@ private:
 	sf::Vector2f linePosition;
 
 	float velocity;
-	float acceleration;
 	float distanceFromLine;
 	float dir;
 	float speedModifier;
