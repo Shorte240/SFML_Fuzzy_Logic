@@ -23,7 +23,7 @@ FuzzyCar::FuzzyCar(sf::RenderWindow* hwnd)
 	givenDistance = 0.0f;
 	givenVelocity = 0.0f;
 
-	fuzzyEngine = FisImporter().fromFile("FuzzyCarInferenceSystem.fis");
+	fuzzyEngine = FisImporter().fromFile("FuzzyCarInferenceSystem2.fis");
 }
 
 FuzzyCar::~FuzzyCar()
