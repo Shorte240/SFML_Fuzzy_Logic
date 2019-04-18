@@ -51,8 +51,8 @@ void Sim::gui(float dt)
 	if (ImGui::CollapsingHeader("Finite Car"))
 	{
 		ImGui::Image(finiteCar->getSprite());
-		ImGui::Text("Velocity: %.1f", finiteCar->getVelocity());
-		ImGui::Text("Distance from line: %.1f", finiteCar->getDistanceFromLine());
+		ImGui::Text("Velocity: %f", finiteCar->getVelocity());
+		ImGui::Text("Distance from line: %f", finiteCar->getDistanceFromLine());
 		ImGui::Text("Speed Modifier");
 		ImGui::InputFloat("", &finiteCar->getSpeedModifier());
 	}
@@ -60,11 +60,18 @@ void Sim::gui(float dt)
 	if (ImGui::CollapsingHeader("Fuzzy Car"))
 	{
 		ImGui::Image(fuzzyCar->getSprite());
-		ImGui::Text("Direction: %.1f", fuzzyCar->getDirection());
-		ImGui::Text("Velocity: %.1f", fuzzyCar->getVelocity());
-		ImGui::Text("Distance from line: %.1f", fuzzyCar->getDistanceFromLine());
+		ImGui::Checkbox("Calculate Values", &fuzzyCar->getCalculateValues());
+		ImGui::Text("Velocity: %f", fuzzyCar->getVelocity());
+		ImGui::Text("Distance from line: %f", fuzzyCar->getDistanceFromLine());
+		if (!fuzzyCar->getCalculateValues())
+		{
+			ImGui::Text("Range (-1) to (1)");
+			ImGui::InputFloat("Given Distance: %f", &fuzzyCar->getGivenDistance());
+			ImGui::InputFloat("Given Velocity: %f", &fuzzyCar->getGivenVelocity());
+		}
+		ImGui::Text("Direction: %f", fuzzyCar->getDirection());
 		ImGui::Text("Speed Modifier");
-		ImGui::InputFloat("",&fuzzyCar->getSpeedModifier());
+		ImGui::InputFloat("", &fuzzyCar->getSpeedModifier());
 	}
 
 	// End ImGui Window

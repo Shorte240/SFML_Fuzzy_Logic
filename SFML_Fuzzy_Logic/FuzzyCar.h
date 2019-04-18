@@ -19,6 +19,9 @@ public:
 	float getVelocity() { return velocity; };
 	float getDistanceFromLine() { return distanceFromLine; };
 	float& getSpeedModifier() { return speedModifier; };
+	bool& getCalculateValues() { return calculateValues; };
+	float& getGivenVelocity() { return givenVelocity; };
+	float& getGivenDistance() { return givenDistance; };
 	sf::Sprite getSprite() { return carSprite; };
 
 private:
@@ -46,5 +49,8 @@ private:
 	float distanceFromLine;
 	float dir;
 	float speedModifier;
+	bool calculateValues;
+	float givenVelocity;
+	float givenDistance;
 };
 

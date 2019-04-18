@@ -19,6 +19,9 @@ FuzzyCar::FuzzyCar(sf::RenderWindow* hwnd)
 	velocity = 0.0f;
 	distanceFromLine = 0.0f;
 	speedModifier = 1000.0f;
+	calculateValues = true;
+	givenDistance = 0.0f;
+	givenVelocity = 0.0f;
 
 	fuzzyEngine = FisImporter().fromFile("FuzzyCarInferenceSystem.fis");
 }
@@ -42,10 +45,21 @@ void FuzzyCar::MoveCar(float dt)
 	// Change state of car
 	// Depending on distance from line
 	// And current speed
-	distanceFromLine = linePosition.x - carSprite.getPosition().x;
-	distanceFromLine /= window->getSize().x / 2.0f;
-	velocity = distanceFromLine / (dt);
-	velocity /= 60.0f;
+	if (calculateValues)
+	{
+		distanceFromLine = linePosition.x - carSprite.getPosition().x;
+		distanceFromLine /= window->getSize().x / 2.0f;
+		velocity = distanceFromLine / (dt);
+		velocity /= 60.0f;
+	}
+	else if (!calculateValues)
+	{
+		if (givenDistance >= -1.0f && givenDistance <= 1.0f && givenVelocity >= -1.0f && givenVelocity <= 1.0f)
+		{
+			distanceFromLine = givenDistance;
+			velocity = givenVelocity;
+		}
+	}
 
 	// Prevent velocity going outwidth the range in the speed graph
 	if (velocity < -1.0f)
@@ -105,6 +119,15 @@ void FuzzyCar::MoveCar(float dt)
 		break;
 	default:
 		break;
+	}
+
+	if (carSprite.getPosition().x < 0.0f)
+	{
+		carSprite.setPosition(sf::Vector2f(0.0f, carSprite.getPosition().y));
+	}
+	if (carSprite.getPosition().x > window->getSize().x)
+	{
+		carSprite.setPosition(sf::Vector2f(window->getSize().x, carSprite.getPosition().y));
 	}
 }
 
