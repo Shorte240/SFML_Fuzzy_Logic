@@ -15,12 +15,12 @@ Sim::Sim(sf::RenderWindow* hwnd, Input* in)
 	// Set up the fuzzy logic car
 	fuzzyCar = new FuzzyCar(hwnd);
 
-	application_timings_file.open("application_timings.csv");
+	//application_timings_file.open("application_timings.csv");
 }
 
 Sim::~Sim()
 {
-	application_timings_file.close();
+	//application_timings_file.close();
 }
 
 void Sim::update(float dt)
@@ -48,7 +48,7 @@ void Sim::update(float dt)
 
 	auto fuzzyTime = duration_cast<nanoseconds>(fuzzyEnd - fuzzyStart).count();
 
-	application_timings_file << "Finite Time (ns): " << "," << finiteTime << "," << "," << "Fuzzy Time (ns): " << "," << fuzzyTime << std::endl;
+	//application_timings_file << "Finite Time (ns): " << "," << finiteTime << "," << "," << "Fuzzy Time (ns): " << "," << fuzzyTime << std::endl;
 }
 
 void Sim::gui(float dt)
