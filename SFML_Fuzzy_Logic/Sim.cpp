@@ -14,10 +14,13 @@ Sim::Sim(sf::RenderWindow* hwnd, Input* in)
 
 	// Set up the fuzzy logic car
 	fuzzyCar = new FuzzyCar(hwnd);
+
+	application_timings_file.open("application_timings.csv");
 }
 
 Sim::~Sim()
 {
+	application_timings_file.close();
 }
 
 void Sim::update(float dt)
@@ -31,11 +34,21 @@ void Sim::update(float dt)
 	// Give the lines position to the fuzzy logic car
 	fuzzyCar->GetLinePosition(racingLine->GetPosition());
 
+	the_serial_clock::time_point finiteStart = the_serial_clock::now();
 	// Update the finite state machine car
 	finiteCar->Update(dt);
+	the_serial_clock::time_point finiteEnd = the_serial_clock::now();
 
+	the_serial_clock::time_point fuzzyStart = the_serial_clock::now();
 	// Update the fuzzy logic car
 	fuzzyCar->Update(dt);
+	the_serial_clock::time_point fuzzyEnd = the_serial_clock::now();
+
+	auto finiteTime = duration_cast<nanoseconds>(finiteEnd - finiteStart).count();
+
+	auto fuzzyTime = duration_cast<nanoseconds>(fuzzyEnd - fuzzyStart).count();
+
+	application_timings_file << "Finite Time (ns): " << "," << finiteTime << "," << "," << "Fuzzy Time (ns): " << "," << fuzzyTime << std::endl;
 }
 
 void Sim::gui(float dt)
